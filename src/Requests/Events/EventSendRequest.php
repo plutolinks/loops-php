@@ -32,7 +32,7 @@ class EventSendRequest extends Request implements HasBody
 
         return new EventSendResponse(
             success: $data['success'],
-            message: $data['message']
+            message: $data['message'] ?? null
         );
     }
 
