@@ -13,8 +13,13 @@ class ContactRetrieveRequest extends Request
 {
     protected Method $method = Method::GET;
 
-    public function __construct(protected readonly string $email)
-    {
+    public function __construct(
+        protected readonly string|null $email = null,
+        protected readonly string|null $userId = null
+    ) {
+        if (($email === null && $userId === null) || ($email !== null && $userId !== null)) {
+            throw new \InvalidArgumentException('Exactly one of email or userId must be provided');
+        }
     }
 
     public function createDtoFromResponse(Response $response): Contact|null
@@ -31,9 +36,10 @@ class ContactRetrieveRequest extends Request
 
     protected function defaultQuery(): array
     {
-        return [
+        return array_filter([
             'email' => $this->email,
-        ];
+            'userId' => $this->userId,
+        ]);
     }
 
     public function resolveEndpoint(): string

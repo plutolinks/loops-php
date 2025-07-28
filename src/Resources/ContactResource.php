@@ -46,10 +46,10 @@ class ContactResource extends BaseResource
         return $response;
     }
 
-    public function retrieve(string $email): Contact
+    public function retrieve(?string $email = null, ?string $userId = null): Contact|null
     {
-        /** @var Contact $contact */
-        $contact = $this->connector->send(new ContactRetrieveRequest($email))->dto();
+        /** @var Contact|null $contact */
+        $contact = $this->connector->send(new ContactRetrieveRequest($email, $userId))->dto();
 
         return $contact;
     }
