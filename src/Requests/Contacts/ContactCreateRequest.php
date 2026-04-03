@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Contacts;
+namespace Hosmelq\Loops\Requests\Contacts;
 
-use PlutoLinks\Loops\Responses\Contacts\ContactCreateResponse;
+use Hosmelq\Loops\Responses\Contacts\ContactCreateResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

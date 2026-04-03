@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Transactional;
+namespace Hosmelq\Loops\Requests\Transactional;
 
-use PlutoLinks\Loops\Responses\Transactional\TransactionalSendResponse;
+use Hosmelq\Loops\Responses\Transactional\TransactionalSendResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

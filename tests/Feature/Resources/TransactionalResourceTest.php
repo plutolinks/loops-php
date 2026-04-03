@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use PlutoLinks\Loops\Loops;
-use PlutoLinks\Loops\Requests\Transactional\TransactionalSendRequest;
+use Hosmelq\Loops\Loops;
+use Hosmelq\Loops\Requests\Transactional\TransactionalSendRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 

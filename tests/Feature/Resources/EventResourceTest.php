@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use PlutoLinks\Loops\Loops;
-use PlutoLinks\Loops\Requests\Events\EventSendRequest;
+use Hosmelq\Loops\Loops;
+use Hosmelq\Loops\Requests\Events\EventSendRequest;
 use Saloon\Http\Faking\MockClient;
 use Saloon\Http\Faking\MockResponse;
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops;
+namespace Hosmelq\Loops;
 
-use PlutoLinks\Loops\Resources\ContactResource;
-use PlutoLinks\Loops\Resources\EventResource;
-use PlutoLinks\Loops\Resources\TransactionalResource;
+use Hosmelq\Loops\Resources\ContactResource;
+use Hosmelq\Loops\Resources\EventResource;
+use Hosmelq\Loops\Resources\TransactionalResource;
 use Saloon\Contracts\Authenticator;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;

@@ -13,7 +13,7 @@ Requires PHP 8.1+
 You may install Loops into your project using the Composer package manager:
 
 ```sh
-composer require plutolinks/loops
+composer require hosmelq/loops
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ composer require plutolinks/loops
 You can create an instance of the SDK like so:
 
 ```php
-use PlutoLinks\Loops\Loops;
+use Hosmelq\Loops\Loops;
 
 $loops = Loops::client('<api-key>'); 
 ```

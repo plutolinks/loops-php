@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Responses\Events;
+namespace Hosmelq\Loops\Responses\Events;
 
 class EventSendResponse
 {

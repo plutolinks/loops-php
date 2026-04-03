@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Resources;
+namespace Hosmelq\Loops\Resources;
 
-use PlutoLinks\Loops\DataTransferObjects\Contact;
-use PlutoLinks\Loops\Requests\Contacts\ContactCreateRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactCustomFieldsRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactDeleteRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactRetrieveRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactUpdateRequest;
-use PlutoLinks\Loops\Responses\Contacts\ContactCreateResponse;
-use PlutoLinks\Loops\Responses\Contacts\ContactDeleteResponse;
-use PlutoLinks\Loops\Responses\Contacts\ContactUpdateResponse;
+use Hosmelq\Loops\DataTransferObjects\Contact;
+use Hosmelq\Loops\Requests\Contacts\ContactCreateRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactCustomFieldsRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactDeleteRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactRetrieveRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactUpdateRequest;
+use Hosmelq\Loops\Responses\Contacts\ContactCreateResponse;
+use Hosmelq\Loops\Responses\Contacts\ContactDeleteResponse;
+use Hosmelq\Loops\Responses\Contacts\ContactUpdateResponse;
 use Saloon\Http\BaseResource;
 
 class ContactResource extends BaseResource

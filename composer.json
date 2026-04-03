@@ -1,8 +1,8 @@
 {
-    "name": "plutolinks/loops",
+    "name": "hosmelq/loops",
     "license": "MIT",
     "keywords": [
-        "plutolinks",
+        "hosmelq",
         "loops",
         "php",
         "email",
@@ -33,12 +33,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PlutoLinks\\Loops\\": "src/"
+            "Hosmelq\\Loops\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PlutoLinks\\Loops\\Tests\\": "tests/"
+            "Hosmelq\\Loops\\Tests\\": "tests/"
         }
     },
     "config": {

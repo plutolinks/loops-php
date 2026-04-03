@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Contacts;
+namespace Hosmelq\Loops\Requests\Contacts;
 
-use PlutoLinks\Loops\DataTransferObjects\CustomField;
+use Hosmelq\Loops\DataTransferObjects\CustomField;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;

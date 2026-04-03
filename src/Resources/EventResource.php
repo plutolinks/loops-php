@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Resources;
+namespace Hosmelq\Loops\Resources;
 
-use PlutoLinks\Loops\Requests\Events\EventSendRequest;
-use PlutoLinks\Loops\Responses\Events\EventSendResponse;
+use Hosmelq\Loops\Requests\Events\EventSendRequest;
+use Hosmelq\Loops\Responses\Events\EventSendResponse;
 use Saloon\Http\BaseResource;
 
 class EventResource extends BaseResource

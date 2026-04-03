@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Events;
+namespace Hosmelq\Loops\Requests\Events;
 
-use PlutoLinks\Loops\Responses\Events\EventSendResponse;
+use Hosmelq\Loops\Responses\Events\EventSendResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

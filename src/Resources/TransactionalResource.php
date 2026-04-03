@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Resources;
+namespace Hosmelq\Loops\Resources;
 
-use PlutoLinks\Loops\Requests\Transactional\TransactionalSendRequest;
-use PlutoLinks\Loops\Responses\Transactional\TransactionalSendResponse;
+use Hosmelq\Loops\Requests\Transactional\TransactionalSendRequest;
+use Hosmelq\Loops\Responses\Transactional\TransactionalSendResponse;
 use Saloon\Http\BaseResource;
 
 class TransactionalResource extends BaseResource

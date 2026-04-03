@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Responses\Transactional;
+namespace Hosmelq\Loops\Responses\Transactional;
 
 class TransactionalSendResponse
 {

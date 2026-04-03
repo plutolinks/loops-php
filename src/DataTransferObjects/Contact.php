@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\DataTransferObjects;
+namespace Hosmelq\Loops\DataTransferObjects;
 
 class Contact
 {
