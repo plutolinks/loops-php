@@ -8,8 +8,8 @@ class ContactCreateResponse
 {
     public function __construct(
         public readonly bool $success,
-        public readonly string|null $id,
-        public readonly string|null $message,
+        public readonly null|string $id,
+        public readonly null|string $message,
     ) {
     }
 }

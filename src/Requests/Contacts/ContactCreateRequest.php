@@ -23,7 +23,7 @@ class ContactCreateRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): ContactCreateResponse
     {
-        /** @var array{id: string|null, message: string|null, success: bool} $data */
+        /** @var array{id: null|string, message: null|string, success: bool} $data */
         $data = $response->json();
 
         return new ContactCreateResponse(
@@ -33,13 +33,13 @@ class ContactCreateRequest extends Request implements HasBody
         );
     }
 
-    protected function defaultBody(): array
-    {
-        return $this->properties;
-    }
-
     public function resolveEndpoint(): string
     {
         return 'contacts/create';
+    }
+
+    protected function defaultBody(): array
+    {
+        return $this->properties;
     }
 }

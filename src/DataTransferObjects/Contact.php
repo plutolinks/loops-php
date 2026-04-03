@@ -9,7 +9,7 @@ class Contact
     /**
      * @var list<string>
      */
-    public const DEFAULT_PROPERTIES = [
+    public const array DEFAULT_PROPERTIES = [
         'email',
         'firstName',
         'id',
@@ -23,27 +23,22 @@ class Contact
     public function __construct(
         public readonly string $id,
         public readonly string $email,
-        public readonly string|null $firstName = null,
-        public readonly string|null $lastName = null,
-        public readonly string|null $source = null,
+        public readonly null|string $firstName = null,
+        public readonly null|string $lastName = null,
+        public readonly null|string $source = null,
         public readonly bool $subscribed = true,
-        public readonly string|null $userGroup = null,
-        public readonly string|null $userId = null,
-        public readonly ?array $properties = null,
+        public readonly null|string $userGroup = null,
+        public readonly null|string $userId = null,
+        public readonly null|array $properties = null,
     ) {
     }
 
-    public function __get(string $name): mixed
-    {
-        return $this->properties[$name] ?? null;
-    }
-
     /**
-     * @param array{email: string, firstName: string|null, id: string, lastName: string|null, source: string, subscribed: bool, userGroup: string, userId: string|null} $attributes
+     * @param array{email: string, firstName: null|string, id: string, lastName: null|string, source: string, subscribed: bool, userGroup: string, userId: null|string} $attributes
      */
-    public static function from(array $attributes): Contact
+    public static function from(array $attributes): self
     {
-        return new Contact(
+        return new self(
             id: $attributes['id'],
             email: $attributes['email'],
             firstName: $attributes['firstName'],
@@ -54,5 +49,10 @@ class Contact
             userId: $attributes['userId'],
             properties: array_diff_key($attributes, array_flip(static::DEFAULT_PROPERTIES)),
         );
+    }
+
+    public function __get(string $name): mixed
+    {
+        return $this->properties[$name] ?? null;
     }
 }

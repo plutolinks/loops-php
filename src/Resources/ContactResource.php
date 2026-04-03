@@ -18,7 +18,7 @@ use Saloon\Http\BaseResource;
 class ContactResource extends BaseResource
 {
     /**
-     * @param array{email: string, firstName: string|null, lastName: string|null, source: string, subscribed: bool, userGroup: string|null, userId: string|null} $properties
+     * @param array{email: string, firstName: null|string, lastName: null|string, source: string, subscribed: bool, userGroup: null|string, userId: null|string} $properties
      */
     public function create(array $properties): ContactCreateResponse
     {
@@ -36,7 +36,7 @@ class ContactResource extends BaseResource
         return $response;
     }
 
-    public function delete(string|null $email = null, string|null $userId = null): ContactDeleteResponse
+    public function delete(null|string $email = null, null|string $userId = null): ContactDeleteResponse
     {
         /** @var ContactDeleteResponse $response */
         $response = $this->connector->send(

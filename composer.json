@@ -16,21 +16,28 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "saloonphp/saloon": "^3.7",
-        "thecodingmachine/safe": "^3.0"
+        "php": "^8.3",
+        "saloonphp/saloon": "^4.0",
+        "thecodingmachine/safe": "^3.4"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.42",
-        "laravel/pint": "^1.14",
-        "pestphp/pest": "^2.34",
-        "phpstan/extension-installer": "^1.3",
-        "phpstan/phpstan": "^2.0",
-        "phpstan/phpstan-deprecation-rules": "^2.0",
-        "rector/rector": "^2.0",
-        "spaze/phpstan-disallowed-calls": "^4.0",
-        "thecodingmachine/phpstan-safe-rule": "^1.3.1"
+        "ergebnis/composer-normalize": "^2.50",
+        "laravel/pint": "^1.29",
+        "pestphp/pest": "^4.4.5",
+        "phpstan/extension-installer": "^1.4.3",
+        "phpstan/phpstan": "^2.1.46",
+        "phpstan/phpstan-deprecation-rules": "^2.0.4",
+        "phpstan/phpstan-strict-rules": "^2.0.10",
+        "rector/rector": "^2.3.9",
+        "rector/type-perfect": "^2.1.2",
+        "shipmonk/composer-dependency-analyser": "^1.8.4",
+        "spaze/phpstan-disallowed-calls": "^4.9.2",
+        "thecodingmachine/phpstan-safe-rule": "^1.4.3",
+        "ticketswap/phpstan-error-formatter": "^1.3",
+        "tomasvotruba/type-coverage": "^2.1"
     },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Hosmelq\\Loops\\": "src/"
@@ -47,12 +54,21 @@
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         },
-        "preferred-install": "dist",
         "sort-packages": true
     },
     "scripts": {
-        "analyse": "phpstan analyse --configuration=phpstan.neon.dist --memory-limit=4G",
+        "phpstan": "phpstan analyse --configuration=phpstan.neon.dist --memory-limit=4G",
+        "pint": "pint",
         "rector": "rector",
-        "test": "pest"
-    }
+        "test": "pest",
+        "test-coverage": "pest --coverage"
+    },
+    "scripts-descriptions": {
+        "phpstan": "Run PHPStan static analysis.",
+        "pint": "Format code using Laravel Pint.",
+        "rector": "Run Rector automated refactoring.",
+        "test": "Run the test suite using Pest.",
+        "test-coverage": "Run the test suite with code coverage using Pest."
+    },
+    "$schema": "https://getcomposer.org/schema.json"
 }

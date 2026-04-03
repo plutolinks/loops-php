@@ -27,7 +27,7 @@ class TransactionalSendRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): TransactionalSendResponse
     {
-        /** @var array{error: array{path: string, message: string}|null, message: string|null, path: string|null, success: bool, transactionalId: string|null} $data */
+        /** @var array{error: null|array{path: string, message: string}, message: null|string, path: null|string, success: bool, transactionalId: null|string} $data */
         $data = $response->json();
 
         return new TransactionalSendResponse(
@@ -39,6 +39,11 @@ class TransactionalSendRequest extends Request implements HasBody
         );
     }
 
+    public function resolveEndpoint(): string
+    {
+        return 'transactional';
+    }
+
     protected function defaultBody(): array
     {
         return [
@@ -47,10 +52,5 @@ class TransactionalSendRequest extends Request implements HasBody
             'email' => $this->email,
             'transactionalId' => $this->transactionalId,
         ];
-    }
-
-    public function resolveEndpoint(): string
-    {
-        return 'transactional';
     }
 }

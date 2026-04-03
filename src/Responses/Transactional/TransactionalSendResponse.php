@@ -11,10 +11,10 @@ class TransactionalSendResponse
      */
     public function __construct(
         public readonly bool $success,
-        public readonly array|null $error = null,
-        public readonly string|null $message = null,
-        public readonly string|null $path = null,
-        public readonly string|null $transactionalId = null,
+        public readonly null|array $error = null,
+        public readonly null|string $message = null,
+        public readonly null|string $path = null,
+        public readonly null|string $transactionalId = null,
     ) {
     }
 }

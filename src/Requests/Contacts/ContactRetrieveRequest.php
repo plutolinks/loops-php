@@ -17,9 +17,9 @@ class ContactRetrieveRequest extends Request
     {
     }
 
-    public function createDtoFromResponse(Response $response): Contact|null
+    public function createDtoFromResponse(Response $response): null|Contact
     {
-        /** @var array{email: string, firstName: string|null, id: string, lastName: string|null, source: string, subscribed: bool, userGroup: string, userId: string|null}|null $data */
+        /** @var null|array{email: string, firstName: null|string, id: string, lastName: null|string, source: string, subscribed: bool, userGroup: string, userId: null|string} $data */
         $data = $response->json('0');
 
         if (is_null($data)) {
@@ -29,15 +29,15 @@ class ContactRetrieveRequest extends Request
         return Contact::from($data);
     }
 
+    public function resolveEndpoint(): string
+    {
+        return 'contacts/find';
+    }
+
     protected function defaultQuery(): array
     {
         return [
             'email' => $this->email,
         ];
-    }
-
-    public function resolveEndpoint(): string
-    {
-        return 'contacts/find';
     }
 }

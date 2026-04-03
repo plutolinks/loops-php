@@ -18,8 +18,8 @@ class ContactDeleteRequest extends Request implements HasBody
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected readonly string|null $email = null,
-        protected readonly string|null $userId = null
+        protected readonly null|string $email = null,
+        protected readonly null|string $userId = null
     ) {
     }
 
@@ -34,16 +34,16 @@ class ContactDeleteRequest extends Request implements HasBody
         );
     }
 
+    public function resolveEndpoint(): string
+    {
+        return 'contacts/delete';
+    }
+
     protected function defaultBody(): array
     {
         return array_filter([
             'email' => $this->email,
             'userId' => $this->userId,
         ]);
-    }
-
-    public function resolveEndpoint(): string
-    {
-        return 'contacts/delete';
     }
 }

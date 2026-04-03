@@ -6,7 +6,7 @@ The Loops PHP SDK provides an expressive interface for interacting with [Loops](
 
 ## Requirements
 
-Requires PHP 8.1+
+Requires PHP 8.3+
 
 ## Installation
 

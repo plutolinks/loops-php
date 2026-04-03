@@ -20,19 +20,9 @@ class Loops extends Connector
     {
     }
 
-    protected function defaultAuth(): Authenticator
+    public static function client(string $token): self
     {
-        return new TokenAuthenticator($this->token);
-    }
-
-    public function resolveBaseUrl(): string
-    {
-        return 'https://app.loops.so/api/v1';
-    }
-
-    public static function client(string $token): Loops
-    {
-        return new Loops($token);
+        return new self($token);
     }
 
     public function contacts(): ContactResource
@@ -45,8 +35,18 @@ class Loops extends Connector
         return new EventResource($this);
     }
 
+    public function resolveBaseUrl(): string
+    {
+        return 'https://app.loops.so/api/v1';
+    }
+
     public function transactional(): TransactionalResource
     {
         return new TransactionalResource($this);
+    }
+
+    protected function defaultAuth(): Authenticator
+    {
+        return new TokenAuthenticator($this->token);
     }
 }

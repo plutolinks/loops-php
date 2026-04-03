@@ -12,8 +12,8 @@ class EventResource extends BaseResource
 {
     public function send(
         string $eventName,
-        string|null $email = null,
-        string|null $userId = null,
+        null|string $email = null,
+        null|string $userId = null,
         array $properties = []
     ): EventSendResponse {
         /** @var EventSendResponse $response */

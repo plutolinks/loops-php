@@ -25,7 +25,7 @@ class ContactUpdateRequest extends Request implements HasBody
 
     public function createDtoFromResponse(Response $response): ContactUpdateResponse
     {
-        /** @var array{id: string|null, message: string|null, success: bool} $data */
+        /** @var array{id: null|string, message: null|string, success: bool} $data */
         $data = $response->json();
 
         return new ContactUpdateResponse(
@@ -35,16 +35,16 @@ class ContactUpdateRequest extends Request implements HasBody
         );
     }
 
+    public function resolveEndpoint(): string
+    {
+        return 'contacts/update';
+    }
+
     protected function defaultBody(): array
     {
         return [
             ...$this->properties,
             'email' => $this->email,
         ];
-    }
-
-    public function resolveEndpoint(): string
-    {
-        return 'contacts/update';
     }
 }
