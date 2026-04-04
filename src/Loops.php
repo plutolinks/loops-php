@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops;
+namespace Hosmelq\Loops;
 
-use PlutoLinks\Loops\Resources\ContactResource;
-use PlutoLinks\Loops\Resources\EventResource;
-use PlutoLinks\Loops\Resources\TransactionalResource;
+use Hosmelq\Loops\Resources\ContactResource;
+use Hosmelq\Loops\Resources\EventResource;
+use Hosmelq\Loops\Resources\TransactionalResource;
 use Saloon\Contracts\Authenticator;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -20,19 +20,9 @@ class Loops extends Connector
     {
     }
 
-    protected function defaultAuth(): Authenticator
+    public static function client(string $token): self
     {
-        return new TokenAuthenticator($this->token);
-    }
-
-    public function resolveBaseUrl(): string
-    {
-        return 'https://app.loops.so/api/v1';
-    }
-
-    public static function client(string $token): Loops
-    {
-        return new Loops($token);
+        return new self($token);
     }
 
     public function contacts(): ContactResource
@@ -45,8 +35,18 @@ class Loops extends Connector
         return new EventResource($this);
     }
 
+    public function resolveBaseUrl(): string
+    {
+        return 'https://app.loops.so/api/v1';
+    }
+
     public function transactional(): TransactionalResource
     {
         return new TransactionalResource($this);
+    }
+
+    protected function defaultAuth(): Authenticator
+    {
+        return new TokenAuthenticator($this->token);
     }
 }

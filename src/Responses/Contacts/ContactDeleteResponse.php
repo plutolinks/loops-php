@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Responses\Contacts;
+namespace Hosmelq\Loops\Responses\Contacts;
 
 class ContactDeleteResponse
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Contacts;
+namespace Hosmelq\Loops\Requests\Contacts;
 
-use PlutoLinks\Loops\DataTransferObjects\CustomField;
+use Hosmelq\Loops\DataTransferObjects\CustomField;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
@@ -18,7 +18,7 @@ class ContactCustomFieldsRequest extends Request
         /** @var array<int, array{key: string, label: string, type: 'boolean'|'date'|'number'|'string'}> $data */
         $data = $response->json();
 
-        return array_map(fn (array $customField): CustomField => CustomField::from($customField), $data);
+        return array_map(CustomField::from(...), $data);
     }
 
     public function resolveEndpoint(): string

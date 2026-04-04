@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Requests\Events;
+namespace Hosmelq\Loops\Requests\Events;
 
-use PlutoLinks\Loops\Responses\Events\EventSendResponse;
+use Hosmelq\Loops\Responses\Events\EventSendResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
@@ -19,21 +19,26 @@ class EventSendRequest extends Request implements HasBody
 
     public function __construct(
         public readonly string $eventName,
-        public readonly string|null $email = null,
-        public readonly string|null $userId = null,
+        public readonly null|string $email = null,
+        public readonly null|string $userId = null,
         public readonly array $properties = [],
     ) {
     }
 
     public function createDtoFromResponse(Response $response): EventSendResponse
     {
-        /** @var array{message: string|null, success: bool} $data */
+        /** @var array{message: null|string, success: bool} $data */
         $data = $response->json();
 
         return new EventSendResponse(
             success: $data['success'],
             message: $data['message'] ?? null
         );
+    }
+
+    public function resolveEndpoint(): string
+    {
+        return 'events/send';
     }
 
     protected function defaultBody(): array
@@ -46,10 +51,5 @@ class EventSendRequest extends Request implements HasBody
             ]),
             'eventName' => $this->eventName,
         ];
-    }
-
-    public function resolveEndpoint(): string
-    {
-        return 'events/send';
     }
 }

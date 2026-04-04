@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use PlutoLinks\Loops\Loops;
+use Hosmelq\Loops\Loops;
 
 it('may create a client', function (): void {
     $loops = Loops::client('asdf');

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\DataTransferObjects;
+namespace Hosmelq\Loops\DataTransferObjects;
 
 class CustomField
 {
@@ -19,9 +19,9 @@ class CustomField
     /**
      * @param array{key: string, label: string, type: 'boolean'|'date'|'number'|'string'} $attributes
      */
-    public static function from(array $attributes): CustomField
+    public static function from(array $attributes): self
     {
-        return new CustomField(
+        return new self(
             key: $attributes['key'],
             label: $attributes['label'],
             type: $attributes['type']

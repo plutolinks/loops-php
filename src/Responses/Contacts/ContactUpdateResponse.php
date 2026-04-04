@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Responses\Contacts;
+namespace Hosmelq\Loops\Responses\Contacts;
 
 class ContactUpdateResponse
 {
     public function __construct(
         public readonly bool $success,
-        public readonly string|null $id,
-        public readonly string|null $message,
+        public readonly null|string $id,
+        public readonly null|string $message,
     ) {
     }
 }

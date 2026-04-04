@@ -1,154 +1,96 @@
-name: Continuous integration
+name: Continuous Integration
 
 on:
-  pull_request:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 jobs:
-  check-static-code:
-    name: Check static code (PHP ${{ matrix.php-version }})
+  check-unused-composer-dependencies:
+    name: Check unused composer dependencies
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: [ 8.1, 8.2, 8.3 ]
+    steps:
+      - name: Check unused composer dependencies
+        uses: hosmelq/.github/.github/actions/composer-unused-dependencies-check@main
+        with:
+          php-version: '8.3'
+
+  check-composer:
+    name: Check composer
+
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Check composer normalize
+        uses: hosmelq/.github/.github/actions/composer-normalize-check@main
         with:
-          coverage: none
-          php-version: ${{ matrix.php-version }}
-          tools: cs2pr
+          php-version: '8.3'
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+  check-static-code:
+    name: Check static code
 
-      - name: Restore composer cache
-        uses: actions/cache@v4
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check static code
+        uses: hosmelq/.github/.github/actions/phpstan-check@main
         with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Install composer dependencies
-        run: composer install --no-progress
-
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --error-format=checkstyle | cs2pr
+          php-version: '8.3'
 
   check-code-quality:
-    name: Check code quality (PHP ${{ matrix.php-version }})
+    name: Check code quality
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: [ 8.1, 8.2, 8.3 ]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Check code quality
+        uses: hosmelq/.github/.github/actions/php-rector-check@main
         with:
-          coverage: none
-          php-version: ${{ matrix.php-version }}
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Restore composer cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Install composer dependencies
-        run: composer install --no-progress
-
-      - name: Run Rector
-        run: vendor/bin/rector --ansi --dry-run
+          php-version: '8.3'
 
   check-code-style:
-    name: Check code style (PHP ${{ matrix.php-version }})
+    name: Check code style
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: [ 8.1, 8.2, 8.3 ]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Check code style
+        uses: hosmelq/.github/.github/actions/php-pint-check@main
         with:
-          coverage: none
-          php-version: ${{ matrix.php-version }}
-          tools: cs2pr
-
-      - name: Install composer dependencies
-        run: composer install --no-progress
-
-      - name: Run Pint
-        id: pint-test
-        run: vendor/bin/pint --test
-
-      - name: Run Pint with annotations
-        if: failure() && steps.pint-test.outcome != 'success'
-        run: vendor/bin/pint --format=checkstyle --test | cs2pr
+          php-version: '8.3'
 
   tests:
-    name: PHP tests (PHP ${{ matrix.php-version }})
+    name: PHP ${{ matrix.php }}
 
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        php-version: [ 8.1, 8.2, 8.3 ]
+        php: ['8.3', '8.4', '8.5']
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          coverage: none
-          php-version: ${{ matrix.php-version }}
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: |
-          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
-
-      - name: Restore composer cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+        uses: actions/checkout@v6
 
       - name: Install composer dependencies
-        run: composer install --no-progress
+        uses: hosmelq/.github/.github/actions/composer-install@main
+        with:
+          php-version: ${{ matrix.php }}
+
+      - name: Installed dependencies
+        run: composer show -D
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+          echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run tests
         run: composer test

@@ -2,23 +2,23 @@
 
 declare(strict_types=1);
 
-namespace PlutoLinks\Loops\Resources;
+namespace Hosmelq\Loops\Resources;
 
-use PlutoLinks\Loops\DataTransferObjects\Contact;
-use PlutoLinks\Loops\Requests\Contacts\ContactCreateRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactCustomFieldsRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactDeleteRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactRetrieveRequest;
-use PlutoLinks\Loops\Requests\Contacts\ContactUpdateRequest;
-use PlutoLinks\Loops\Responses\Contacts\ContactCreateResponse;
-use PlutoLinks\Loops\Responses\Contacts\ContactDeleteResponse;
-use PlutoLinks\Loops\Responses\Contacts\ContactUpdateResponse;
+use Hosmelq\Loops\DataTransferObjects\Contact;
+use Hosmelq\Loops\Requests\Contacts\ContactCreateRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactCustomFieldsRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactDeleteRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactRetrieveRequest;
+use Hosmelq\Loops\Requests\Contacts\ContactUpdateRequest;
+use Hosmelq\Loops\Responses\Contacts\ContactCreateResponse;
+use Hosmelq\Loops\Responses\Contacts\ContactDeleteResponse;
+use Hosmelq\Loops\Responses\Contacts\ContactUpdateResponse;
 use Saloon\Http\BaseResource;
 
 class ContactResource extends BaseResource
 {
     /**
-     * @param array{email: string, firstName: string|null, lastName: string|null, source: string, subscribed: bool, userGroup: string|null, userId: string|null} $properties
+     * @param array{email: string, firstName: null|string, lastName: null|string, source: string, subscribed: bool, userGroup: null|string, userId: null|string} $properties
      */
     public function create(array $properties): ContactCreateResponse
     {
@@ -36,7 +36,7 @@ class ContactResource extends BaseResource
         return $response;
     }
 
-    public function delete(string|null $email = null, string|null $userId = null): ContactDeleteResponse
+    public function delete(null|string $email = null, null|string $userId = null): ContactDeleteResponse
     {
         /** @var ContactDeleteResponse $response */
         $response = $this->connector->send(
